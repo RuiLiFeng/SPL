@@ -228,7 +228,7 @@ end
 X=diag(y)*A;
 lambdaMax=norm(X'*thetaList(:,1),inf)/m;
 
-new_time=tic;
+tic;
 nabla=zeros(m,1);
 for i=1:m
     nabla(i)=log(thetaList(i,1)/(1-thetaList(i,1)))/m;
@@ -281,21 +281,15 @@ for i=1:N-1
    
 end
 disp("new running time:");
-toc(new_time);
-new_thetaList=thetaList;
-new_betaList=betaList;
-new_funVal=funValList;
-new_cList=cList;
-new_actsize=actsize;
+toc;
+new_thetaList
 new_aberror=norm(betaList-betaListCheck,'fro')+norm(funValList-funCheck,'fro')+norm(cList-cListCheck,'fro');
 %is_no_change=is_no_change/(norm(betaListCheck,1)+norm(funCheck,1)+norm(cListCheck,1));
- if new_aberror>=0.00001%relative error exceeds 1% then we believe it has some trouble
-     disp("the solution is changed under new!");
-     disp(new_aberror);
- else
+if new_aberror>=0.00001%relative error exceeds 1% then we believe it has some trouble
+    disp("the solution is changed under slore!");
+else
     disp("the solution is right");
-    disp(new_aberror);
- end
-
+end
+disp(new_aberror);
 
     
