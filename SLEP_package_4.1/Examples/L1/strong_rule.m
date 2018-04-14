@@ -49,7 +49,7 @@ opts.rFlag=1;       % the input parameter 'rho' is a ratio in (0, 1)
 opts.sWeight=[1,1]; % set the weight for positive and negative samples
 
 %----------------------- Run the code LeastR -----------------------
-N=100;%siez of questions
+N=1000;%siez of questions
 Y=0.5*y+0.5;
 p=mean(Y)*ones(m,1);
 lambdaMax=norm(A'*(Y-p),inf);% ÇólambdaMax
@@ -297,5 +297,10 @@ new_aberror=norm(betaList-betaListCheck,'fro')+norm(funValList-funCheck,'fro')+n
     disp(new_aberror);
  end
 
+ 
+ calculus_slore=abs(slore_actsize-strong_rule_actsize)./(1+n-strong_rule_actsize);
+ calculus_slore=mean(calculus_slore);
+ calculus_new=ab(new_actsize-strong_rule_actsize)./(1+n-strong_rule_actsize);
+ 
 
     
