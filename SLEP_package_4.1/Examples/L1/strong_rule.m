@@ -10,7 +10,7 @@ addpath(genpath([root '/SLEP']));
 % change to the original folder
 cd Examples/L1;
 
-m=100;  n=10000;     % The data matrix is of size m x n
+m=1000;  n=1000;     % The data matrix is of size m x n
 
 randNum=2;           % a random number
 
@@ -57,6 +57,7 @@ lambdaMax=norm(A'*(Y-p),inf);% ÇólambdaMax
 
 NowAct=zeros(1,n);
 lamList=1:-1/N:0;
+lamList=exp(lamList)/exp(1)-1/exp(1);
 betaList=zeros(n,N);
 cList=zeros(1,N);
 cList(1)=b1;
@@ -133,14 +134,14 @@ strong_rule_is_no_change=is_no_change;
 
 
 %Now we use slores
-N=100;%siez of questions
+
 Y=0.5*y+0.5;
 p=mean(Y)*ones(m,1);
 
 [a1,b1,c1]=LogisticR(A, y, 1, opts);
 
 NowAct=zeros(1,n);
-lamList=1:-1/N:0;
+
 betaList=zeros(n,N);
 cList=zeros(1,N);
 cList(1)=b1;
@@ -210,7 +211,7 @@ slore_cList=cList;
 slore_is_no_change=is_no_change;
 
 NowAct=zeros(1,n);
-lamList=1:-1/N:0;
+
 betaList=zeros(n,N);
 cList=zeros(1,N);
 cList(1)=b1;
@@ -300,7 +301,7 @@ new_aberror=norm(betaList-betaListCheck,'fro')+norm(funValList-funCheck,'fro')+n
  
  calculus_slore=abs(slore_actsize-strong_rule_actsize)./(1+n-strong_rule_actsize);
  calculus_slore=mean(calculus_slore);
- calculus_new=ab(new_actsize-strong_rule_actsize)./(1+n-strong_rule_actsize);
+ calculus_new=abs(new_actsize-strong_rule_actsize)./(1+n-strong_rule_actsize);
  
 
     
